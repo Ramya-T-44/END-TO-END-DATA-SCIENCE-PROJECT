@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Performance Predictor</title>
+
+    <!-- ✅ Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 420px;
+            margin: auto;
+            box-shadow: 0px 0px 15px gray;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+        }
+
+        label {
+            width: 180px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        label i {
+            margin-right: 8px;
+            color: #36d1dc;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            background: #36d1dc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #2bb3bd;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .pass {
+            color: green;
+        }
+
+        .fail {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🎓 Student Predictor</h1>
+
+    <div class="form-group">
+        <label><i class="fa-solid fa-book"></i>Hours Studied:</label>
+        <input id="hours" type="number" placeholder="Enter hours studied">
+    </div>
+
+    <div class="form-group">
+        <label><i class="fa-solid fa-calendar-check"></i>Attendance:</label>
+        <input id="attendance" type="number" placeholder="Enter attendance %">
+    </div>
+
+    <div class="form-group">
+        <label><i class="fa-solid fa-bed"></i>Sleep Hours:</label>
+        <input id="sleep" type="number" placeholder="Enter sleep hours">
+    </div>
+
+    <div class="form-group">
+        <label><i class="fa-solid fa-chart-line"></i>Previous Scores:</label>
+        <input id="prev" type="number" placeholder="Enter previous marks">
+    </div>
+
+    <div class="form-group">
+        <label><i class="fa-solid fa-user-graduate"></i>Tutoring Sessions:</label>
+        <input id="tutoring" type="number" placeholder="Enter sessions">
+    </div>
+
+    <div style="display:flex; gap:10px;">
+    <button onclick="predict()">Predict</button>
+    <button onclick="resetForm()" style="background:#ff6b6b;">Refresh 🔄</button>
+</div>
+
+    <h2 id="result"></h2>
+</div>
+
+<script>
+function predict() {
+    const data = {
+        Hours_Studied: document.getElementById("hours").value,
+        Attendance: document.getElementById("attendance").value,
+        Sleep_Hours: document.getElementById("sleep").value,
+        Previous_Scores: document.getElementById("prev").value,
+        Tutoring_Sessions: document.getElementById("tutoring").value
+    };
+    
+
+    fetch("/predict", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        let res = document.getElementById("result");
+        res.innerText = result.result;
+
+        // 🎨 Change color dynamically
+        if(result.result.includes("Pass")) {
+            res.className = "pass";
+        } else {
+            res.className = "fail";
+        }
+    });
+function resetForm() {
+    document.getElementById("hours").value = "";
+    document.getElementById("attendance").value = "";
+    document.getElementById("sleep").value = "";
+    document.getElementById("prev").value = "";
+    document.getElementById("tutoring").value = "";
+
+    document.getElementById("result").innerText = "";
+}
+}
+</script>
+
+</body>
+</html>
