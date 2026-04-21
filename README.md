@@ -1,6 +1,6 @@
 *COMPANY* : CODTECH IT SOLUTIONS
 
-*NAME* : TADEPALLLI R N V SAI RAMYA
+*NAME* : TADEPALLI R N V SAI RAMYA
 
 *INTERN ID* : CTIS6700
 
@@ -12,7 +12,7 @@
 
 **Decription**
 
-# + Task 3: Web Application for Student Performance Prediction
+#  Task 3: Web Application for Student Performance Prediction
 
 Task 3 involved developing a web-based application using Flask to predict student performance based on various input parameters. 
 The objective of this task was to integrate machine learning with web development, enabling users to interact with the model through a user-friendly interface.
