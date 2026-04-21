@@ -44,3 +44,5 @@ that users can interact with easily.
 **Output**
 
 
+<img width="662" height="701" alt="Image" src="https://github.com/user-attachments/assets/2d0801cb-99d7-46e0-a50e-2f19e1e4575b" />
+<img width="786" height="742" alt="Image" src="https://github.com/user-attachments/assets/96557b7c-1a20-4d23-9994-a76bd3243bbb" />
